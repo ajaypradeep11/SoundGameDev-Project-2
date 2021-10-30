@@ -410,7 +410,7 @@ static void glfw_key_callback(GLFWwindow* window, int key, int scancode, int act
 					fprintf(stderr, "unable to play sound");
 				}
 			}
-			count = 0;
+			count = 0;		
 		}
 		else if (isLevel2) {
 			_channelQuestion3->isPlaying(&_isPlaying);
@@ -431,6 +431,105 @@ static void glfw_key_callback(GLFWwindow* window, int key, int scancode, int act
 	}
 	else if (key == GLFW_KEY_Z && action == GLFW_PRESS) {
 		_selectedChannelGroup = _channelGroupBGM;
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_ECHO, &_dspEcho);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+
+		}
+		//Append dsp to channel index 0
+		//_result = _vecChannels.at(0)->addDSP(0, _dspEcho);
+		_result = _selectedChannelGroup->addDSP(0, _dspEcho);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel\n");
+
+		}
+		//Enalbe dsp
+		_result = _dspEcho->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+
+		}
+		//Bypass dsp for now
+		_result = _dspEcho->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+
+		}
+
+
+
+		//Flange
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_FLANGE, &_dspFlange);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(0, _dspFlange);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel\n");
+		}
+		//Enalbe dsp
+		_result = _dspFlange->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspFlange->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
+		//NINE - objectpan
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_OBJECTPAN, &_dspObjectpan);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(2, _dspObjectpan);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel8\n");
+		}
+		//Enalbe dsp
+		_result = _dspObjectpan->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspObjectpan->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
+		//THIRTEEN - highpass
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_HIGHPASS, &_dspHighpass);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(3, _dspHighpass);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel4\n");
+		}
+		//Enalbe dsp
+		_result = _dspHighpass->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspHighpass->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
 		zKey = true;
 		xKey = false;
 		cKey = false;
@@ -438,6 +537,100 @@ static void glfw_key_callback(GLFWwindow* window, int key, int scancode, int act
 	}
 	else if (key == GLFW_KEY_X && action == GLFW_PRESS) {
 		_selectedChannelGroup = _channelGroupVoice;
+
+		//Distortion
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_DISTORTION, &_dspDistortion);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+
+		_result = _selectedChannelGroup->addDSP(0, _dspDistortion);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel14\n");
+		}
+		//Enalbe dsp
+		_result = _dspDistortion->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspDistortion->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_TREMOLO, &_dspTremolo);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(1, _dspTremolo);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel11\n");
+		}
+		//Enalbe dsp
+		_result = _dspTremolo->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspTremolo->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
+		//TEN - oscillator
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_OSCILLATOR, &_dspOscillator);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(2, _dspOscillator);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel7\n");
+		}
+		//Enalbe dsp
+		_result = _dspOscillator->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspOscillator->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+		//FOURTEEN - normalize
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_NORMALIZE, &_dspNormalize);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(3, _dspNormalize);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel3\n");
+		}
+		//Enalbe dsp
+		_result = _dspNormalize->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspNormalize->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
+
 		zKey = false;
 		xKey = true;
 		cKey = false;
@@ -446,6 +639,98 @@ static void glfw_key_callback(GLFWwindow* window, int key, int scancode, int act
 	}
 	else if (key == GLFW_KEY_C && action == GLFW_PRESS) {
 		_selectedChannelGroup = _channelGroupOption;
+
+
+		//Chorus
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_CHORUS, &_dspChorus);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		_result = _selectedChannelGroup->addDSP(0, _dspChorus);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel13\n");
+		}
+		_result = _dspChorus->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		_result = _dspChorus->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+		//SEVEN - pan
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_PAN, &_dspPan);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(1, _dspPan);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel10\n");
+		}
+		//Enalbe dsp
+		_result = _dspPan->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspPan->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
+		//ELEVEN - fader
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_FADER, &_dspFader);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(2, _dspFader);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel6\n");
+		}
+		//Enalbe dsp
+		_result = _dspFader->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspFader->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
+
+		//FIFTEEN - limiter
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_LIMITER, &_dspLimiter);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(3, _dspLimiter);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel2\n");
+		}
+		//Enalbe dsp
+		_result = _dspLimiter->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspLimiter->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
 		zKey = false;
 		xKey = false;
 		cKey = true;
@@ -454,6 +739,98 @@ static void glfw_key_callback(GLFWwindow* window, int key, int scancode, int act
 	}
 	else if (key == GLFW_KEY_V && action == GLFW_PRESS) {
 		_selectedChannelGroup = _channelGroupSong;
+
+		//Delay
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_DELAY, &_dspDelay);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(1, _dspDelay);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel12\n");
+		}
+		//Enalbe dsp
+		_result = _dspDelay->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspDelay->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+		//EIGHT - convolutionreverb
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_CONVOLUTIONREVERB, &_dspConvolutionreverb);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(1, _dspConvolutionreverb);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel9\n");
+		}
+		//Enalbe dsp
+		_result = _dspConvolutionreverb->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspConvolutionreverb->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+		//TWELVE - lowpass
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_LOWPASS, &_dspLowpass);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(2, _dspLowpass);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel5\n");
+		}
+		//Enalbe dsp
+		_result = _dspLowpass->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspLowpass->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
+
+
+		//SIXTEEN - compressor
+
+		_result = _system->createDSPByType(FMOD_DSP_TYPE_COMPRESSOR, &_dspCompressor);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to create dsp\n");
+		}
+		//Append dsp to channel index 0
+
+		_result = _selectedChannelGroup->addDSP(3, _dspCompressor);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable to add dsp to channel1\n");
+		}
+		//Enalbe dsp
+		_result = _dspCompressor->setActive(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp to active\n");
+		}
+		//Bypass dsp for now
+		_result = _dspCompressor->setBypass(true);
+		if (FMOD_OK != _result) {
+			fprintf(stderr, "Unable set dsp bypass\n");
+		}
 		zKey = false;
 		xKey = false;
 		cKey = false;
@@ -1163,443 +1540,6 @@ bool initFMOD() {
 
 	_selectedChannelGroup = _channelGroupMaster;
 
-
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_ECHO, &_dspEcho);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-	//_result = _vecChannels.at(0)->addDSP(0, _dspEcho);
-	_result = _selectedChannelGroup->addDSP(0, _dspEcho);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspEcho->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspEcho->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-
-	//Flange
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_FLANGE, &_dspFlange);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(0, _dspFlange);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspFlange->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspFlange->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-
-
-	//Distortion
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_DISTORTION, &_dspDistortion);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-
-	_result = _selectedChannelGroup->addDSP(0, _dspDistortion);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel14\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspDistortion->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspDistortion->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-	
-
-
-	//Chorus
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_CHORUS, &_dspChorus);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	_result = _selectedChannelGroup->addDSP(0, _dspChorus);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel13\n");
-		return false;
-	}
-	_result = _dspChorus->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	_result = _dspChorus->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-
-
-
-
-	//Delay
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_DELAY, &_dspDelay);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(1, _dspDelay);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel12\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspDelay->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspDelay->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-
-
-	//SIX - tremolo
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_TREMOLO, &_dspTremolo);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(1, _dspTremolo);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel11\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspTremolo->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspTremolo->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-
-	//SEVEN - pan
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_PAN, &_dspPan);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(1, _dspPan);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel10\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspPan->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspPan->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-
-	//EIGHT - convolutionreverb
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_CONVOLUTIONREVERB, &_dspConvolutionreverb);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(1, _dspConvolutionreverb);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel9\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspConvolutionreverb->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspConvolutionreverb->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-	//NINE - objectpan
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_OBJECTPAN, &_dspObjectpan);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(2, _dspObjectpan);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel8\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspObjectpan->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspObjectpan->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-
-	//TEN - oscillator
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_OSCILLATOR, &_dspOscillator);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(2, _dspOscillator);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel7\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspOscillator->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspOscillator->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-	//ELEVEN - fader
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_FADER, &_dspFader);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(2, _dspFader);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel6\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspFader->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspFader->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-	//TWELVE - lowpass
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_LOWPASS, &_dspLowpass);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(2, _dspLowpass);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel5\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspLowpass->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspLowpass->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-	//THIRTEEN - highpass
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_HIGHPASS, &_dspHighpass);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(3, _dspHighpass);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel4\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspHighpass->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspHighpass->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-	//FOURTEEN - normalize
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_NORMALIZE, &_dspNormalize);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(3, _dspNormalize);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel3\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspNormalize->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspNormalize->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-	//FIFTEEN - limiter
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_LIMITER, &_dspLimiter);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(3, _dspLimiter);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel2\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspLimiter->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspLimiter->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
-
-	//SIXTEEN - compressor
-
-	_result = _system->createDSPByType(FMOD_DSP_TYPE_COMPRESSOR, &_dspCompressor);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to create dsp\n");
-		return false;
-	}
-	//Append dsp to channel index 0
-
-	_result = _selectedChannelGroup->addDSP(3, _dspCompressor);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable to add dsp to channel1\n");
-		return false;
-	}
-	//Enalbe dsp
-	_result = _dspCompressor->setActive(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp to active\n");
-		return false;
-	}
-	//Bypass dsp for now
-	_result = _dspCompressor->setBypass(true);
-	if (FMOD_OK != _result) {
-		fprintf(stderr, "Unable set dsp bypass\n");
-		return false;
-	}
 
 	return true;
 }

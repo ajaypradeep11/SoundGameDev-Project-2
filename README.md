@@ -45,26 +45,27 @@
 -  TAB - Pause/Play background music
 -  ESC - To Quit the game
 -  1, 2, 3, 4 - Options to guess the beat
-The Z key acts as toggle for the BGM channel, with following DSPs:    
-				    echo
-                                    flange
-                                    objectpan
-                                    highpass
+-  7, 8, 9, 0 - Toggles effect for current channel
+-  The Z key acts as toggle for the BGM channel, with following DSPs:    
+   + Echo
+   + Flange
+   + Objectpan
+   + Highpass
 
-The X key acts as toggle for the Voice channel, with following DSPs:    
-				    distortion
-                                    tremolo
-                                    oscillator
-                                    normalize
+- The X key acts as toggle for the Voice channel, with following DSPs:    
+   + Distortion
+   + Tremolo
+   + Oscillator
+   + Normalize
 
-The C key acts as toggle for the Options channel, with following DSPs:    
-  				    chorus
-                                    pan
-                                    fader
-                                    limiter
+- The C key acts as toggle for the Options channel, with following DSPs:    
+   + Chorus
+   + Pan
+   + Fader
+   + Limiter
 
-The V key acts as toggle for the Song channel, with following DSPs:    
-				    delay
-                                    convolutionreverb
-                                    lowpass
-                                    compressor
+- The V key acts as toggle for the Song channel, with following DSPs:    
+   + Delay
+   + Convolution Reverb
+   + Lowpass
+   + Compressor
