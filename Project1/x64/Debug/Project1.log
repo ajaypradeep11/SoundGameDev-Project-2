@@ -1,0 +1,17 @@
+﻿  D:\GDP\Media Fundamentals\SoundGameDev\common\lib\x64\Debug\fmod.dll
+  D:\GDP\Media Fundamentals\SoundGameDev\common\lib\x64\Debug\freetype.dll
+  D:\GDP\Media Fundamentals\SoundGameDev\common\lib\x64\Debug\glfw3.dll
+  3 File(s) copied
+  D:\GDP\Media Fundamentals\SoundGameDev\common\fonts\arial.ttf
+  1 File(s) copied
+  D:\GDP\Media Fundamentals\SoundGameDev\common\fonts\arial.ttf
+  1 File(s) copied
+  main.cpp
+D:\GDP\Media Fundamentals\SoundGameDev\Project1\main.cpp(245,36): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\GDP\Media Fundamentals\SoundGameDev\Project1\main.cpp(283,36): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\GDP\Media Fundamentals\SoundGameDev\Project1\main.cpp(1125,34): warning C4305: 'argument': truncation from 'double' to 'float'
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+rssgl.lib(GLLog.obj) : warning LNK4099: PDB 'rssgl.pdb' was not found with 'rssgl.lib(GLLog.obj)' or at 'D:\GDP\Media Fundamentals\SoundGameDev\x64\Debug\rssgl.pdb'; linking object as if no debug info
+rssgl.lib(GLShader.obj) : warning LNK4099: PDB 'rssgl.pdb' was not found with 'rssgl.lib(GLShader.obj)' or at 'D:\GDP\Media Fundamentals\SoundGameDev\x64\Debug\rssgl.pdb'; linking object as if no debug info
+rssgl.lib(GLText.obj) : warning LNK4099: PDB 'rssgl.pdb' was not found with 'rssgl.lib(GLText.obj)' or at 'D:\GDP\Media Fundamentals\SoundGameDev\x64\Debug\rssgl.pdb'; linking object as if no debug info
+  Project1.vcxproj -> D:\GDP\Media Fundamentals\SoundGameDev\x64\Debug\Project1.exe
